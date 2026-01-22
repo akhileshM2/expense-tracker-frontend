@@ -12,6 +12,7 @@ export const Signup = () => {
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(false)
     const navigate = useNavigate()
 
     return (<>
@@ -20,32 +21,39 @@ export const Signup = () => {
                 <div className="rounded-lg bg-slate-300 w-80 text-center p-2 h-max px-4">
                     <Heading label={"Sign up"} />
                     <SubHeading label={"Enter information to create an account"}/>
-                    <InputBox onChange={(e: any) => {
+                    <InputBox type={"name"} onChange={(e: any) => {
                         setName(e.target.value)
                     }} placeholder={"John Doe"} label={"Name"} />
-                    <InputBox onChange={(e: any) => {
+                    <InputBox type={"email"} onChange={(e: any) => {
                         setEmail(e.target.value)
                     }} placeholder={"johndoe@gmail.com"} label={"Email"} />
-                    <InputBox onChange={(e: any) => {
+                    <InputBox type={"password"} onChange={(e: any) => {
                         setPassword(e.target.value)
                     }} placeholder={"12345678"} label={"Password"} />
 
                     <div className="pt-4">
                         <Button loading={loading} label={"Sign up"} onClick={async () => {
                             setLoading(true)
-                            const res = await axios.post("http://localhost:3000/api/v1/user/signup", {
-                                name,
-                                email,
-                                password
-                            })
-                            localStorage.setItem("token", res.data.key)
-                            localStorage.setItem("name", res.data.name)
-                            localStorage.setItem("email", res.data.email)
-                            navigate("/dashboard")
-                            setLoading(false)
+                            try {
+                                const res = await axios.post("http://localhost:3000/api/v1/user/signup", {
+                                    name,
+                                    email,
+                                    password
+                                })
+                                localStorage.setItem("token", res.data.key)
+                                localStorage.setItem("name", res.data.name)
+                                localStorage.setItem("email", res.data.email)
+                                navigate("/dashboard")
+                            } catch (err) {
+                                console.error(err)
+                                setError(true)
+                            } finally {
+                                setLoading(false)
+                            }
                         }}/>
                     </div>
                     <BottomWarning label={"Already have an account?"} buttonText={"Sign in"} to={"/signin"}/>
+                    {error ? ( <div className="text-red-600 font-semibold">Invalid name, email or password</div> ) : ("")}
                 </div>
             </div>
         </div>
