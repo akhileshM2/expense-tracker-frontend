@@ -5,7 +5,7 @@ export const Appbar = () => {
     const arr = initials.split(" ")
 
     return (
-        <div className="border-b flex justify-between px-10 py-5 bg-slate-200">
+        <div className="border-b flex justify-between px-10 py-5 bg-slate-200 shadow-md">
             <Link to={"/dashboard"} className="flex flex-col justify-center cursor-pointer">
                 <div>
                     Expense Tracker
