@@ -1,6 +1,5 @@
 
-//@ts-ignore
-export const Button = ({loading, label, onClick}) => {
+export const Button = ({loading, label, onClick} : any) => {
     return (
         <button
             onClick={onClick} disabled={loading}

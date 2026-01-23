@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 
-//@ts-ignore
-export const BottomWarning = ({label, buttonText, to}) => {
+export const BottomWarning = ({label, buttonText, to} : any) => {
     return <div className="py-2 text-sm flex justify-center">
       <div>
         {label}
