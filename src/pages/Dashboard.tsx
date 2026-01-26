@@ -33,7 +33,7 @@ export const Dashboard = () => {
 
     const fetchExpenses = useCallback(async () => {
         try {
-            const response = await axios.get("http://localhost:3000/api/v1/account/items", {
+            const response = await axios.get("http://ec2-15-206-122-216.ap-south-1.compute.amazonaws.com:3000/api/v1/account/items", {
                 headers: {
                     Authorization: localStorage.getItem("token")
                 }
@@ -55,7 +55,7 @@ export const Dashboard = () => {
         setLoading(true)
         
         try {
-            await axios.post("http://localhost:3000/api/v1/account/additem", {
+            await axios.post("http://ec2-15-206-122-216.ap-south-1.compute.amazonaws.com:3000/api/v1/account/additem", {
                 item: itemName,
                 cost: parseInt(amount),
                 userId: localStorage.getItem("email")
@@ -84,7 +84,7 @@ export const Dashboard = () => {
 
         try {
             const deleteRequests = selectedItems.map((id) => 
-                axios.delete(`http://localhost:3000/api/v1/account/removeitem/user/${userId}/items/${id}`, {
+                axios.delete(`http://ec2-15-206-122-216.ap-south-1.compute.amazonaws.com:3000/api/v1/account/removeitem/user/${userId}/items/${id}`, {
                     headers: {
                         Authorization: localStorage.getItem("token")
                     }
@@ -124,7 +124,7 @@ export const Dashboard = () => {
             const token = localStorage.getItem("token")
             const userEmail = localStorage.getItem("email")
 
-            await axios.put("http://localhost:3000/api/v1/account/changeitem", {
+            await axios.put("http://ec2-15-206-122-216.ap-south-1.compute.amazonaws.com:3000/api/v1/account/changeitem", {
                 newItemName: itemName,
                 cost: Number(amount),
                 email: userEmail,
