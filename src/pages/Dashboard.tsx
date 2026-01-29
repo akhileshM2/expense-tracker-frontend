@@ -154,7 +154,7 @@ export const Dashboard = () => {
     return (
         <div className="min-h-screen bg-slate-50">
             <Appbar />
-            <div className="flex flex-col md:flex-row justify-center gap-10 p-10">
+            <div className="flex flex-col lg:flex-row justify-center gap-10 p-10">
                 
                 {/* Left Card: Input */}
                 <div className="rounded-2xl bg-white w-full max-w-lg p-8 h-max shadow-lg border border-gray-100">
@@ -205,10 +205,10 @@ export const Dashboard = () => {
 
                 {/* Right Card: Summary List */}
                 <div className="rounded-2xl bg-white w-full max-w-lg p-8 min-h-[450px] shadow-lg border border-gray-100 flex flex-col">
-                    <div className="flex justify-between mb-6 border-b pb-2">
+                    <div className="flex flex-col md:flex-row md:justify-between mb-6 border-b pb-2">
                         <h2 className="text-xl font-bold text-gray-800">History</h2>
                         
-                        <div className="flex justify-end items-center mb-6">
+                        <div className="md:flex-row md:justify-end items-center mb-6 mt-4 md:mt-0">
                             <button onClick={handleDeleteRequest} disabled={!selectedItems.length || loading} className={`text-white bg-red-400 px-3 py-1 rounded-full text-sm font-semibold shadow-blue-200 shadow-md mr-4
                                 ${!selectedItems.length || loading
                                 ? "bg-red-400 cursor-not-allowed" 
