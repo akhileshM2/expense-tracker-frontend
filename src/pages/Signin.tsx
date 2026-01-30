@@ -5,7 +5,7 @@ import { Button } from "../components/Button"
 import { Heading } from "../components/Heading"
 import { InputBox } from "../components/Inputbox"
 import { SubHeading } from "../components/Subheading"
-import { useAuth } from '../AuthContext';
+import { useAuth } from '../hooks/useAuth';
 import axios from "axios"
 
 

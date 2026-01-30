@@ -6,7 +6,7 @@ import { InputBox } from "../components/Inputbox"
 import { Button } from "../components/Button"
 import axios from "axios"
 import { BottomWarning } from "../components/BottomWarning"
-import { useAuth } from "../AuthContext"
+import { useAuth } from "../hooks/useAuth"
 
 export const Signup = () => {
     const [email, setEmail] = useState("")

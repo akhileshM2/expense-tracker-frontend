@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { useAuth } from "../AuthContext"
+import { useAuth } from "../hooks/useAuth"
 
 export const Appbar = () => {
     const initials = localStorage.getItem("name") || ""

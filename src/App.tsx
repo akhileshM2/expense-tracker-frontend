@@ -3,12 +3,11 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Signup } from './pages/Signup'
 import { Signin } from './pages/Signin'
 import { Dashboard } from './pages/Dashboard'
-import { AuthProvider, useAuth } from './AuthContext'
+import { AuthProvider } from './context/AuthContext'
+import { useAuth } from './hooks/useAuth'
 
 function AppRoutes() {
-  const { isAuthenticated, loading } = useAuth()
-
-  if (loading) return <div className="flex h-screen items-center justify-center">Loading...</div>
+  const { isAuthenticated } = useAuth()
 
   return (
     <Routes>
