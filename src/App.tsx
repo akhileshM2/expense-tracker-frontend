@@ -1,5 +1,5 @@
 import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Signup } from './pages/Signup'
 import { Signin } from './pages/Signin'
 import { Dashboard } from './pages/Dashboard'
@@ -10,11 +10,11 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={loggedUser() ? <Dashboard /> : <Signin />} />
+          <Route path='/' element={loggedUser() ? <Navigate to={"/dashboard"} replace /> : <Signin />} />
+          <Route path='/dashboard' element={loggedUser() ? <Dashboard /> : <Navigate to={"/signin"} replace />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/signin' element={<Signin />} />
           <Route path='/*' element={<Signin />} />
-          <Route path='/dashboard' element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </>
