@@ -5,6 +5,7 @@ import { Button } from "../components/Button"
 import { Heading } from "../components/Heading"
 import { InputBox } from "../components/Inputbox"
 import { SubHeading } from "../components/Subheading"
+import { useAuth } from '../hooks/useAuth';
 import axios from "axios"
 
 
@@ -13,6 +14,7 @@ export const Signin = () => {
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
+    const { login } = useAuth()
     const navigate = useNavigate()
 
     return (<>
@@ -35,9 +37,14 @@ export const Signin = () => {
                                     email,
                                     password
                                 })
-                                localStorage.setItem("token", res.data.token)
-                                localStorage.setItem("name", res.data.name)
-                                localStorage.setItem("email", res.data.email)
+
+                                const userData = {
+                                    token: res.data.token,
+                                    name: res.data.name,
+                                    email: res.data.email
+                                }
+
+                                login(userData)
                                 navigate("/dashboard")
                             } catch (err) {
                                 console.error(err)

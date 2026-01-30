@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
+import { useAuth } from "../hooks/useAuth"
 
 export const Appbar = () => {
     const initials = localStorage.getItem("name") || ""
     const arr = initials.split(" ")
+    const {logout} = useAuth()
 
     return (
         <div className="border-b flex justify-between px-10 py-5 bg-slate-200 shadow-md">
@@ -14,12 +16,10 @@ export const Appbar = () => {
             <div>
                 <Link to={"/signin"}>
                     <button onClick={() => {
-                        localStorage.removeItem("token")
-                        localStorage.removeItem("name")
-                        localStorage.removeItem("email")
+                        logout()
                     }} type="button" className="mr-8 text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">Logout</button>
                 </Link>
-                <Avatar size="big" name={arr[0][0] + arr[1][0] || ""} />
+                <Avatar size="big" name={arr.length === 1 ? arr[0][0] : arr[0][0] + arr[arr.length-1][0]} />
             </div>
         </div>
     )

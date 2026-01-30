@@ -3,30 +3,35 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Signup } from './pages/Signup'
 import { Signin } from './pages/Signin'
 import { Dashboard } from './pages/Dashboard'
+import { AuthProvider } from './context/AuthContext'
+import { useAuth } from './hooks/useAuth'
 
-function App() {
+function AppRoutes() {
+  const { isAuthenticated } = useAuth()
 
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={loggedUser() ? <Navigate to={"/dashboard"} replace /> : <Signin />} />
-          <Route path='/dashboard' element={loggedUser() ? <Dashboard /> : <Navigate to={"/signin"} replace />} />
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/signin' element={<Signin />} />
-          <Route path='/*' element={<Signin />} />
-        </Routes>
-      </BrowserRouter>
-    </>
+    <Routes>
+      {/* Public Routes */}
+      <Route path="/signin" element={!isAuthenticated ? <Signin /> : <Navigate to="/dashboard" replace />} />
+      <Route path="/signup" element={<Signup />} />
+
+      {/* Protected Routes */}
+      <Route path="/dashboard" element={isAuthenticated ? <Dashboard /> : <Navigate to="/signin" replace />} />
+
+      {/* Fallback */}
+      <Route path="*" element={<Navigate to={isAuthenticated ? "/dashboard" : "/signin"} />} />
+    </Routes>
   )
 }
 
-const loggedUser = () => {
-    const loggedUserToken = localStorage.getItem("token") || false
-    const loggedUserName = localStorage.getItem("name") || false
-    const loggedUserEmail = localStorage.getItem("email") || false
-
-    return loggedUserToken && loggedUserName && loggedUserEmail
-  }
+function App() {
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
+    </BrowserRouter>
+  )
+}
 
 export default App
