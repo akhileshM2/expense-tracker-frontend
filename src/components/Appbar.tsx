@@ -12,7 +12,7 @@ export const Appbar = () => {
                 </div>
             </Link>
             <div>
-                <Link to={"/"}>
+                <Link to={"/signin"}>
                     <button onClick={() => {
                         localStorage.removeItem("token")
                         localStorage.removeItem("name")

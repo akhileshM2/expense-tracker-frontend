@@ -10,6 +10,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={loggedUser() ? <Dashboard /> : <Signin />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/signin' element={<Signin />} />
           <Route path='/*' element={<Signin />} />
@@ -19,5 +20,13 @@ function App() {
     </>
   )
 }
+
+const loggedUser = () => {
+    const loggedUserToken = localStorage.getItem("token") || false
+    const loggedUserName = localStorage.getItem("name") || false
+    const loggedUserEmail = localStorage.getItem("email") || false
+
+    return loggedUserToken && loggedUserName && loggedUserEmail
+  }
 
 export default App
