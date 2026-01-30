@@ -9,7 +9,7 @@ import { useAuth } from '../AuthContext';
 import axios from "axios"
 
 
-export const Signin = ({onLogin}: any) => {
+export const Signin = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
@@ -43,7 +43,7 @@ export const Signin = ({onLogin}: any) => {
                                     name: res.data.name,
                                     email: res.data.email
                                 }
-                                
+
                                 login(userData)
                                 navigate("/dashboard")
                             } catch (err) {
