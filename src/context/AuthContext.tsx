@@ -7,9 +7,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const token = localStorage.getItem("token")
     const name = localStorage.getItem("name")
     const email = localStorage.getItem("email")
+    const id = localStorage.getItem("id")
 
-    if (token && name && email) {
-      return { token, name, email }
+    if (token && name && email && id) {
+      return { token, name, email, id }
     }
     return null;
   })
@@ -18,6 +19,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     localStorage.setItem("token", userData.token)
     localStorage.setItem("name", userData.name)
     localStorage.setItem("email", userData.email)
+    localStorage.setItem("id", userData.id)
     setUser(userData)
   }
 
@@ -25,6 +27,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     localStorage.removeItem("token")
     localStorage.removeItem("name")
     localStorage.removeItem("email")
+    localStorage.removeItem("id")
     setUser(null)
   }
 

@@ -46,7 +46,8 @@ export const Signup = () => {
                                 const userData = {
                                     token: res.data.token,
                                     name: res.data.name,
-                                    email: res.data.email
+                                    email: res.data.email,
+                                    id: res.data.id
                                 }
                                 
                                 login(userData)
