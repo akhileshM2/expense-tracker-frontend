@@ -1,0 +1,25 @@
+/* Fix the alignment and padding of the month/year grid */
+.react-datepicker {
+  font-family: inherit;
+  border-radius: 0.75rem !important;
+  border: 1px solid #e5e7eb !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.react-datepicker__header {
+  background-color: white !important;
+  border-bottom: 1px solid #f3f4f6 !important;
+  padding-top: 10px !important;
+}
+
+.react-datepicker__month-wrapper {
+  display: flex;
+  justify-content: space-around;
+  padding: 5px 0;
+}
+
+/* Ensure the selected month matches your theme blue */
+.react-datepicker__month-text--selected {
+  background-color: #2563eb !important; /* Tailwind blue-600 */
+  border-radius: 0.5rem !important;
+}
