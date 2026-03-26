@@ -51,7 +51,7 @@ export function Avatar({ name, size = "small" }: { name: string, size?: "small" 
         const id = localStorage.getItem("id")
 
         try {
-            await axios.delete(`http://localhost:3000/api/v1/user/removeUser/user/${userId}/id/${id}`, {
+            await axios.delete(`https://api.expensetracker24.in/api/v1/user/removeUser/user/${userId}/id/${id}`, {
                 headers: {
                     Authorization: localStorage.getItem("token")
                 }
@@ -77,7 +77,7 @@ export function Avatar({ name, size = "small" }: { name: string, size?: "small" 
             if (oldPassword === newPassword || oldPassword === confirmNewPassword) throw console.error()
             
 
-            await axios.put("http://localhost:3000/api/v1/user/changePassword", {
+            await axios.put("https://api.expensetracker24.in/api/v1/user/changePassword", {
                 userId: userEmail,
                 oldPassword,
                 newPassword
