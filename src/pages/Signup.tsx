@@ -37,7 +37,7 @@ export const Signup = () => {
                         <Button loading={loading} label={"Sign up"} onClick={async () => {
                             setLoading(true)
                             try {
-                                const res = await axios.post("https://api.expensetracker24.in/api/v1/user/signup", {
+                                const res = await axios.post("http://localhost:3000/api/v1/user/signup", {
                                     name,
                                     email,
                                     password

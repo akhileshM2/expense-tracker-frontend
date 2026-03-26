@@ -38,7 +38,7 @@ export const Dashboard = () => {
             const type = activeTab.toLowerCase()
 
             try {
-                const response = await axios.get("https://api.expensetracker24.in/api/v1/account/monthly-summary", {
+                const response = await axios.get("http://localhost:3000/api/v1/account/monthly-summary", {
                     params: { month, year, type },
                     headers: {
                         Authorization: localStorage.getItem("token")
@@ -65,7 +65,7 @@ export const Dashboard = () => {
 
     const fetchExpenses = useCallback(async (type = "expenses") => {
         try {
-            const response = await axios.get(`https://api.expensetracker24.in/api/v1/account/items/${type}`, {
+            const response = await axios.get(`http://localhost:3000/api/v1/account/items/${type}`, {
                 headers: {
                     Authorization: localStorage.getItem("token")
                 }
@@ -88,7 +88,7 @@ export const Dashboard = () => {
         setActiveTab(amountType)
         
         try {
-            await axios.post("https://api.expensetracker24.in/api/v1/account/additem", {
+            await axios.post("http://localhost:3000/api/v1/account/additem", {
                 item: itemName,
                 cost: parseInt(amount),
                 type: amountType.toLowerCase(),
@@ -118,7 +118,7 @@ export const Dashboard = () => {
 
         try {
             const deleteRequests = selectedItems.map((id) => 
-                axios.delete(`https://api.expensetracker24.in/api/v1/account/removeitem/user/${userId}/items/${id}`, {
+                axios.delete(`http://localhost:3000/api/v1/account/removeitem/user/${userId}/items/${id}`, {
                     headers: {
                         Authorization: localStorage.getItem("token")
                     }
@@ -158,7 +158,7 @@ export const Dashboard = () => {
             const token = localStorage.getItem("token")
             const userEmail = localStorage.getItem("email")
 
-            await axios.put("https://api.expensetracker24.in/api/v1/account/changeitem", {
+            await axios.put("http://localhost:3000/api/v1/account/changeitem", {
                 newItemName: itemName,
                 cost: Number(amount),
                 email: userEmail,
@@ -297,7 +297,7 @@ export const Dashboard = () => {
                                     </svg>
                                 </button>
                                 {showPicker && (
-                                    <div className="absolute right-100 z-[100] mt-2 shadow-xl border rounded-lg overflow-hidden">
+                                    <div className="absolute right-1 md:left-1 z-[100] mt-2">
                                         <DatePicker
                                             selected={selectedDate}
                                             onChange={(date: Date | null) => {

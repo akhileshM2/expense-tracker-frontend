@@ -33,7 +33,7 @@ export const Signin = () => {
                         <Button loading={loading} label={"Sign in"} onClick={async () => {
                             setLoading(true)
                             try {
-                                const res = await axios.post("https://api.expensetracker24.in/api/v1/user/signin", {
+                                const res = await axios.post("http://localhost:3000/api/v1/user/signin", {
                                     email,
                                     password
                                 })
