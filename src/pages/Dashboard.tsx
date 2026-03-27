@@ -316,7 +316,7 @@ export const Dashboard = () => {
                         </div>
 
                         
-                        <div className="md:flex-row md:justify-end items-center mb-6 mt-4 md:mt-0">
+                        <div className="flex flex-col md:flex-row md:justify-end items-start md:items-center mb-6 mt-4 md:mt-0">
                             <button onClick={handleDeleteRequest} disabled={!selectedItems.length || loading} className={`text-white bg-red-400 px-3 py-1 rounded-full text-sm font-semibold shadow-blue-200 shadow-md mr-4
                                 ${!selectedItems.length || loading
                                 ? "bg-red-400 cursor-not-allowed" 
@@ -334,7 +334,7 @@ export const Dashboard = () => {
                                     "Delete"
                                 )}
                             </button>
-                            <button onClick={handleClick} className={`text-white px-3 py-1 rounded-full text-sm font-semibold shadow-blue-200 shadow-md mr-4
+                            <button onClick={handleClick} className={`text-white px-3 py-1 rounded-full text-sm font-semibold shadow-blue-200 shadow-md my-4 md:my-0 mr-4
                                 ${items.length 
                                     ? "bg-blue-600 hover:bg-blue-800"
                                     : "bg-blue-400 cursor-not-allowed"}`}
