@@ -66,7 +66,6 @@ export const Dashboard = () => {
     const fetchExpenses = useCallback(async (type = "expenses") => {
         const month = selectedDate.getMonth() + 1
         const year = selectedDate.getFullYear()
-        console.log(month, year)
 
         try {
             const response = await axios.get(`https://api.expensetracker24.in/api/v1/account/items/${type}`, {
@@ -92,6 +91,9 @@ export const Dashboard = () => {
 
     const addItem = async () => {
         if (!itemName || !amount) return
+
+        const month = selectedDate.getMonth() + 1
+        const year = selectedDate.getFullYear()
         setLoading(true)
         setActiveTab(amountType)
         
@@ -102,6 +104,10 @@ export const Dashboard = () => {
                 type: amountType.toLowerCase(),
                 userId: localStorage.getItem("email")
             }, {
+                params: {
+                    month,
+                    year
+                },
                 headers: {
                     Authorization: localStorage.getItem("token")
                 }
@@ -118,6 +124,8 @@ export const Dashboard = () => {
     const handleDeleteRequest = async () => {
         if (selectedItems.length === 0) return
 
+        const month = selectedDate.getMonth() + 1
+        const year = selectedDate.getFullYear()
         const confirmDelete = window.confirm(`Delete ${selectedItems.length} items?`)
         if (!confirmDelete) return
 
@@ -127,6 +135,10 @@ export const Dashboard = () => {
         try {
             const deleteRequests = selectedItems.map((id) => 
                 axios.delete(`https://api.expensetracker24.in/api/v1/account/removeitem/user/${userId}/items/${id}`, {
+                    params: {
+                        month,
+                        year
+                    },
                     headers: {
                         Authorization: localStorage.getItem("token")
                     }
@@ -160,6 +172,9 @@ export const Dashboard = () => {
 
     const handleUpdate = async () => {
         if (!selectedExpense || !itemName || !amount) return
+
+        const month = selectedDate.getMonth() + 1
+        const year = selectedDate.getFullYear()
         setLoading(true);
 
         try {
@@ -174,6 +189,10 @@ export const Dashboard = () => {
                 item: tempName
 
             }, {
+                params: {
+                    month,
+                    year
+                },
                 headers: {
                     Authorization: token
                 }
@@ -306,7 +325,6 @@ export const Dashboard = () => {
                                             selected={selectedDate}
                                             onChange={(date: Date | null) => {
                                                 if (date) {
-                                                    console.log(date)
                                                     setSelectedDate(date)
                                                     setShowPicker(false)
                                                 }
