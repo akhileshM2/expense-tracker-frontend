@@ -64,8 +64,16 @@ export const Dashboard = () => {
     }
 
     const fetchExpenses = useCallback(async (type = "expenses") => {
+        const month = selectedDate.getMonth() + 1
+        const year = selectedDate.getFullYear()
+        console.log(month, year)
+
         try {
             const response = await axios.get(`https://api.expensetracker24.in/api/v1/account/items/${type}`, {
+                params: {
+                    month,
+                    year
+                },
                 headers: {
                     Authorization: localStorage.getItem("token")
                 }
@@ -76,10 +84,10 @@ export const Dashboard = () => {
         } finally {
             setLoading(false)
         }
-    }, []);
+    }, [selectedDate]);
 
     useEffect(() => {
-        fetchExpenses();
+        fetchExpenses(activeTab.toLowerCase());
     }, [fetchExpenses]);
 
     const addItem = async () => {
@@ -190,11 +198,7 @@ export const Dashboard = () => {
 
     const handleTabClick = (tab: string) => {
         setActiveTab(tab);
-        const time = new Date()
-        if (time.getMonth() === selectedDate.getMonth()) {
-            console.log(time.getMonth(), selectedDate.getMonth())
-            fetchExpenses(tab.toLowerCase())
-        }
+        fetchExpenses(tab.toLowerCase())
     }
 
     useEffect(() => {
@@ -302,6 +306,7 @@ export const Dashboard = () => {
                                             selected={selectedDate}
                                             onChange={(date: Date | null) => {
                                                 if (date) {
+                                                    console.log(date)
                                                     setSelectedDate(date)
                                                     setShowPicker(false)
                                                 }
