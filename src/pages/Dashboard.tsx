@@ -126,6 +126,7 @@ export const Dashboard = () => {
 
         const month = selectedDate.getMonth() + 1
         const year = selectedDate.getFullYear()
+        const type = activeTab.toLowerCase()
         const confirmDelete = window.confirm(`Delete ${selectedItems.length} items?`)
         if (!confirmDelete) return
 
@@ -137,7 +138,8 @@ export const Dashboard = () => {
                 axios.delete(`https://api.expensetracker24.in/api/v1/account/removeitem/user/${userId}/items/${id}`, {
                     params: {
                         month,
-                        year
+                        year,
+                        type
                     },
                     headers: {
                         Authorization: localStorage.getItem("token")
@@ -191,7 +193,8 @@ export const Dashboard = () => {
             }, {
                 params: {
                     month,
-                    year
+                    year,
+                    type: activeTab.toLowerCase()
                 },
                 headers: {
                     Authorization: token
