@@ -342,8 +342,8 @@ export const Dashboard = () => {
                         </div>
 
                         
-                        <div className="flex flex-col md:flex-row md:justify-end items-start md:items-center mb-6 mt-4 md:mt-0">
-                            <button onClick={handleDeleteRequest} disabled={!selectedItems.length || loading} className={`text-white bg-red-400 px-3 py-1 rounded-full text-sm font-semibold shadow-blue-200 shadow-md mr-4
+                        <div className="flex flex-wrap w-full flex-row md:justify-end md:items-center mb-6">
+                            <button onClick={handleDeleteRequest} disabled={!selectedItems.length || loading} className={`text-white bg-red-400 px-3 py-1 rounded-full text-sm font-semibold shadow-blue-200 shadow-md my-4 md:my-0 mr-4
                                 ${!selectedItems.length || loading
                                 ? "bg-red-400 cursor-not-allowed" 
                                 : "bg-red-600 hover:bg-red-800 active:scale-95 text-white shadow-red-200"
@@ -364,10 +364,13 @@ export const Dashboard = () => {
                                 ${items.length 
                                     ? "bg-blue-600 hover:bg-blue-800"
                                     : "bg-blue-400 cursor-not-allowed"}`}
-                                    >{buttonText ? "Cancel" : "Select"}</button>
-                            <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-bold">
-                                {items.length === 0 ? `NO ITEMS` : items.length === 1 ? `1 ITEM` : `${items.length} ITEMS`}
-                            </span>
+                                    >{buttonText ? "Cancel" : "Select"}
+                            </button>
+                            <div className="w-full md:w-auto">
+                                <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-bold">
+                                    {items.length === 0 ? `NO ITEMS` : items.length === 1 ? `1 ITEM` : `${items.length} ITEMS`}
+                                </span>
+                            </div>
                         </div>
                     </div>
 
