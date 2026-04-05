@@ -409,16 +409,16 @@ export const Dashboard = () => {
                             <p className="text-center text-gray-400 py-10 italic">No data found.</p>
                         ) : (
                             items.map((exp) => (
-                                <div className={`flex justify-between items-center bg-gray-50 p-4 rounded-xl border ${
+                                <div key={exp.id} className={`flex justify-between items-center bg-gray-50 p-4 rounded-xl border ${
                                                 selectedItems.includes(exp.id) ? "border-blue-500 bg-blue-50/30" : "border-gray-100"
                                             }`}>
                                     <div className="flex">
-                                        <div key={exp.id}>
+                                        <div>
                                             {buttonText && (
                                                 <input
                                                     type="checkbox"
                                                     checked={selectedItems.includes(exp.id)}
-                                                    onChange={() => toggleItemSelection(exp.id)}
+                                                    onChange={() => {toggleItemSelection(exp.id)}}
                                                     className="w-3 h-3 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer mr-2"
                                                 />
                                             )}
