@@ -53,6 +53,8 @@ export const Dashboard = () => {
     }, [selectedDate])
 
     const toggleItemSelection = (id: number) => {
+        if (id === undefined || id === null) return;
+        
         setSelectedItems((prev) =>
             prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
         )
@@ -88,6 +90,10 @@ export const Dashboard = () => {
     useEffect(() => {
         fetchExpenses(activeTab.toLowerCase());
     }, [fetchExpenses]);
+
+    useEffect(() => {
+        setSelectedItems([])
+    }, [items]);
 
     const addItem = async () => {
         if (!itemName || !amount) return
@@ -417,7 +423,7 @@ export const Dashboard = () => {
                                             {buttonText && (
                                                 <input
                                                     type="checkbox"
-                                                    checked={selectedItems.includes(exp.id)}
+                                                    checked={exp.id !== undefined && selectedItems.includes(exp.id)}
                                                     onChange={() => {toggleItemSelection(exp.id)}}
                                                     className="w-3 h-3 rounded border-gray-300 text-blue-600 focus:ring-blue-500 cursor-pointer mr-2"
                                                 />
